@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "648632303215",
+    "firebase_url": "https://ru-unifei.firebaseio.com",
+    "project_id": "ru-unifei",
+    "storage_bucket": "ru-unifei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648632303215:android:8052e2d1d31ab56d74179a",
+        "android_client_info": {
+          "package_name": "com.framil.unifeiru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648632303215-llik18dg1klg21ov5di79icnevp9pn2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATURdEYwWiVdhI0IKW6LgZ74lzsCUqc-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648632303215-llik18dg1klg21ov5di79icnevp9pn2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
