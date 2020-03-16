@@ -11,6 +11,10 @@ class AboutScreen extends StatelessWidget {
           backgroundColor: Colors.blue[900],
           elevation: 0.0,
         ),
+        bottomNavigationBar: Container(
+          height: 50.0,
+          color: Colors.white,
+        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +42,7 @@ class AboutScreen extends StatelessWidget {
               SvgPicture.asset('assets/images/about.svg',
                   width: 200,
                   semanticsLabel: 'Um homem olhando para o computador'),
-              SizedBox(height: 100),
+              SizedBox(height: 50),
               Center(
                 child: RichText(
                   text: new TextSpan(

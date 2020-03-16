@@ -1,6 +1,7 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:ru_unifei_app/screens/screens.dart';
+import 'package:ru_unifei_app/services/push_notification.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +11,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final PushNotificationService _notificationService = PushNotificationService();
+  // Admob Start
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     nonPersonalizedAds: false,
     childDirected: false,
@@ -30,6 +33,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+
+    _notificationService.getToken();
+
     FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-6196159010085856~9751767052');
     _bannerAd = createBannerAd()
       ..load()
@@ -42,6 +48,7 @@ class _MyAppState extends State<MyApp> {
     _bannerAd.dispose();
     super.dispose();
   }
+  // Admob Finish
 
   @override
   Widget build(BuildContext context) {

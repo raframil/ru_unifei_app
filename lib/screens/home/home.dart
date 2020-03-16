@@ -12,13 +12,19 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          title: Text('Cardápio RU'),
+          title: Text('Cardápio RU - UNIFEI'),
           backgroundColor: Colors.blue[900],
           elevation: 0.0,
         ),
         drawer: MenuDrawer(),
         body: Container(child: MenuList()),
+        // Bottom navigation para contonar problema com o ad overlapping
+        bottomNavigationBar: Container(
+          height: 50.0,
+          color: Colors.white,
+        ),
       ),
+      
     );
   }
 }

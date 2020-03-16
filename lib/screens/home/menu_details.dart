@@ -28,6 +28,10 @@ class MenuDetails extends StatelessWidget {
           backgroundColor: _appBarColor,
           title: Text(menu.diaDaSemana),
         ),
+        bottomNavigationBar: Container(
+          height: 50.0,
+          color: Colors.white,
+        ),
         body: Menulist(menu: menu));
   }
 }
