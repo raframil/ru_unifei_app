@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ru_unifei_app/models/menu.dart';
 import 'package:ru_unifei_app/screens/home/menu_list.dart';
 import 'package:ru_unifei_app/services/database.dart';
@@ -17,14 +18,31 @@ class HomeScreen extends StatelessWidget {
           elevation: 0.0,
         ),
         drawer: MenuDrawer(),
-        body: Container(child: MenuList()),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: MenuList(),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            AwesomeDialog(context: context,
+            dialogType: DialogType.INFO,
+            animType: AnimType.BOTTOMSLIDE,
+            tittle: 'Evite filas',
+            desc: 'Você pode comprar tickets para o almoço e jantar antecipadamente na cantina do RA',
+            btnOkOnPress: () {}).show();
+          },
+          child: Icon(Icons.info_outline, color: Colors.red),
+          backgroundColor: Colors.white,
+        ),
         // Bottom navigation para contonar problema com o ad overlapping
         bottomNavigationBar: Container(
           height: 50.0,
           color: Colors.white,
         ),
       ),
-      
     );
   }
 }

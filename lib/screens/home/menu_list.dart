@@ -17,6 +17,7 @@ class _MenuListState extends State<MenuList> {
     final menus = Provider.of<List<Menu>>(context) ?? [];
     menus.sort((a, b) => a.orderNumber.compareTo(b.orderNumber));
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: menus.length,
       itemBuilder: (context, index) {
         return MenuTile(menu: menus[index]);
@@ -46,11 +47,20 @@ class MenuDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.schedule),
+            title: Text('Horários'),
+            onTap: () {
               Navigator.push(
                   context,
                   PageTransition(
                       type: PageTransitionType.leftToRightWithFade,
-                      child: HomeScreen()));
+                      child: ScheduleScreen()));
             },
           ),
           ListTile(
