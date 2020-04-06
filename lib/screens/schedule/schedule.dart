@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+class Schedule {
+  String diaFuncionamento;
+  String cafe;
+  String almoco;
+  String jantar;
+
+  Schedule({this.diaFuncionamento, this.cafe, this.almoco, this.jantar});
+
+  static List<Schedule> getSchedule() {
+    return <Schedule>[
+      Schedule(
+          diaFuncionamento: "Segunda a Sexta",
+          cafe: "a partir das 07h",
+          almoco: "11h às 13h30",
+          jantar: "	18:30h às 21h"),
+          Schedule(
+          diaFuncionamento: "Sábados",
+          cafe: "a partir das 07h",
+          almoco: "11h às 13h30",
+          jantar: "Não funciona"),
+    ];
+  }
+}
+
 class ScheduleScreen extends StatelessWidget {
+  final selectedSchedule = [];
+  final schedules = Schedule.getSchedule();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          title: Text('Sobre'),
+          title: Text('Horários de funcionamento'),
           backgroundColor: Colors.blue[900],
           elevation: 0.0,
         ),
@@ -16,67 +43,50 @@ class ScheduleScreen extends StatelessWidget {
           color: Colors.white,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 50),
-              Center(
-                child: Text(
-                  'Cardápio RU - UNIFEI',
-                  style: new TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Center(
-                child: Text('Versão 1.0.1',
-                    style: new TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontStyle: FontStyle.italic)),
-              ),
-              SizedBox(height: 100),
-              SvgPicture.asset('assets/images/about.svg',
-                  width: 200,
-                  semanticsLabel: 'Um homem olhando para o computador'),
-              SizedBox(height: 50),
-              Center(
-                child: RichText(
-                  text: new TextSpan(
-                    // Note: Styles for TextSpans must be explicitly defined.
-                    // Child text spans will inherit styles from parent
-                    style: new TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
-                    ),
-                    children: <TextSpan>[
-                      new TextSpan(text: 'Desenvolvido por '),
-                      new TextSpan(
-                          text: 'Rafael Framil',
-                          style: new TextStyle(fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Center(
-                child: (Text(
-                  'Sugestões, bugs ou elogios enviar e-mail',
-                  overflow: TextOverflow.ellipsis,
-                )),
-              ),
-              SizedBox(height: 5),
-              Center(
-                child: Text('raframil@gmail.com',
-                    style: new TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900)),
-              ),
-            ],
+          scrollDirection: Axis.vertical,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: (DataTable(
+              columns: [
+                DataColumn(
+                    label: Text("Dias da semana"),
+                    numeric: false,
+                    tooltip: "Dias da semana em que o RU funciona"),
+                DataColumn(
+                    label: Text("Café da manhã"), numeric: false, tooltip: ""),
+                DataColumn(
+                    label: Text("Almoço"),
+                    numeric: false,
+                    tooltip: "this is a valor"),
+                DataColumn(
+                    label: Text("Jantar"),
+                    numeric: false,
+                    tooltip: "this is a valor"),
+              ],
+              rows: schedules
+                  .map(
+                    (schedule) => DataRow(
+                        selected: selectedSchedule.contains(schedule),
+                        cells: [
+                          DataCell(
+                            Text(schedule.diaFuncionamento),
+                            onTap: () {
+                              // write your code..
+                            },
+                          ),
+                          DataCell(
+                            Text(schedule.cafe),
+                          ),
+                          DataCell(
+                            Text(schedule.almoco),
+                          ),
+                          DataCell(
+                            Text(schedule.jantar),
+                          ),
+                        ]),
+                  )
+                  .toList(),
+            )),
           ),
         ));
   }
